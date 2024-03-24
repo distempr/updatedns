@@ -18,4 +18,4 @@ https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records?name=rec
 
 Replace `:zone_identifier` with the zone ID.
 
-For authentication with Cloudflare, use "Authorization: Bearer :token" to the requests.
+For authentication with Cloudflare, add header "Authorization: Bearer :token" to the requests.

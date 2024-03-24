@@ -13,7 +13,7 @@ ip = requests.get(
 ).text
 
 for record in config["cf"]["records"]:
-    response = requests.patch(
+    requests.patch(
         f'{config["cf"]["api_base_url"]}/zones/{record["zone_id"]}/dns_records/{record["record_id"]}',
         json={
             "name": record["record_name"],
