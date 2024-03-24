@@ -1,16 +1,16 @@
+[aws]
+metadata_url = "http://169.254.169.254/latest/meta-data/"
+
 [cf]
 api_base_url = "https://api.cloudflare.com/client/v4"
 api_token = ""
 
-[aws]
-metadata_url = "http://169.254.169.254/latest/meta-data/"
-
-[[records]]
+[[cf.records]]
 record_name = "git.distempr.name"
 zone_id = ""
 record_id = ""
 
-[[records]]
+[[cf.records]]
 record_name = "git.durl.name"
 zone_id = ""
 record_id = ""
