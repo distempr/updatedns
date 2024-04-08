@@ -5,12 +5,26 @@ import tomllib
 import requests
 
 
+IMDS_URL = "http://169.254.169.254/latest"
+IMDS_TOKEN_TTL = 10
+
+
+def get_ip():
+    token = requests.put(IMDS_URL + "/api/token", headers={
+        "X-aws-ec2-metadata-token-ttl-seconds": str(IMDS_TOKEN_TTL)
+    }).text
+
+    ip = requests.get(IMDS_URL + "/meta-data/public-ipv4", headers={
+        "X-aws-ec2-metadata-token": token
+    }).text
+
+    return ip
+
+
 with open("/etc/updatedns.toml", "rb") as f:
     config = tomllib.load(f)
 
-ip = requests.get(
-    config["aws"]["metadata_url"] + "public-ipv4"
-).text
+ip = get_ip()
 
 for record in config["cf"]["records"]:
     requests.patch(
